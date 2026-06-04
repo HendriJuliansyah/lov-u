@@ -6,26 +6,26 @@ let clickCount = 0;
 let fallingHeartInterval = null;
 
 const texts = [
-  "Are you sure?",
-  "Really sure?",
-  "Please say yes 😢",
-  "Don't do this to me 💔",
-  "I'm gonna cry 😭",
-  "Last chance!",
-  "Just click Yes 😤",
-  "You have no choice 😆",
-  "Choose Yes now ❤️"
+  "Beneran Nih?",
+  "Beneran?",
+  "Klik Yes Aja Dong😢",
+  "Jangan Kek Gitu Dong 💔",
+  "Jadi Pengen Nangis Aku 😭",
+  "Terakhir Nih!",
+  "Klik Yes Aja Dong 😤",
+  "Cuma Bisa Yes Wkwkwk 😆",
+  "Pilih Yes Ngak Sekarang! ❤️"
 ];
 
 const noTexts = [
-  "Nope",
-  "Try again",
-  "Too slow",
-  "Missed me",
-  "Nah",
-  "Can't click me",
-  "Oops",
-  "Not today"
+  "Gak",
+  "Coba Lagi",
+  "Jangan Lambat Wkwk",
+  "Wkwkwk",
+  "Yahaha Gabisa Di Klik",
+  "Upsssss",
+  "Wleee",
+  "Wkwkwk"
 ];
 
 window.onload = function () {
@@ -56,6 +56,8 @@ function moveNoButton(event) {
   }
 
   noBtn.innerText = noTexts[clickCount % noTexts.length];
+  noBtn.style.minWidth = "95px";
+  noBtn.style.width = "fit-content";
 
   noBtn.classList.add("shake");
   setTimeout(() => {
