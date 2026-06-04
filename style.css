@@ -5,21 +5,20 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background: #fff1f6;
   font-family: Arial, sans-serif;
   overflow: hidden;
   text-align: center;
-
-  /* Animasi perubahan warna */
   transition: background 0.8s ease;
 }
 
 .wrapper {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   z-index: 2;
+  padding: 0 16px;
 }
 
 h1 {
@@ -31,7 +30,20 @@ h1 {
 
 .bear {
   width: 240px;
+  max-width: 80vw;
+  height: auto;
   margin-bottom: 45px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.kucing {
+  width: 240px;
+  max-width: 80vw;
+  height: auto;
+  margin-bottom: 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(255, 79, 147, 0.25);
 }
 
 .buttons {
@@ -55,6 +67,11 @@ button {
   color: white;
   margin-right: 20px;
   box-shadow: 0 5px 15px rgba(255, 79, 147, 0.4);
+  transform-origin: center;
+}
+
+#yesBtn:hover {
+  background: #ff2f80;
 }
 
 #noBtn {
@@ -70,12 +87,15 @@ button {
 
 #result h1 {
   padding-top: 0;
+  color: white;
+  text-shadow: 0 3px 10px rgba(255, 79, 147, 0.5);
 }
 
 #result p {
-  color: #ff4f93;
+  color: white;
   font-size: 22px;
   font-weight: bold;
+  text-shadow: 0 3px 10px rgba(255, 79, 147, 0.5);
 }
 
 .heart {
@@ -85,6 +105,7 @@ button {
   font-size: 22px;
   animation: fall 4s linear forwards;
   z-index: 1;
+  pointer-events: none;
 }
 
 @keyframes fall {
@@ -99,6 +120,7 @@ button {
   font-size: 28px;
   animation: pop 1.5s ease forwards;
   z-index: 5;
+  pointer-events: none;
 }
 
 @keyframes pop {
@@ -112,15 +134,29 @@ button {
   h1 {
     font-size: 28px;
     padding-top: 80px;
+    margin-bottom: 25px;
+  }
+
+  .bear,
+  .kucing {
+    width: 180px;
   }
 
   .bear {
-    width: 180px;
+    margin-bottom: 40px;
   }
 
   button {
     width: 80px;
     height: 42px;
     font-size: 16px;
+  }
+
+  #yesBtn {
+    margin-right: 15px;
+  }
+
+  #result {
+    padding-top: 90px;
   }
 }

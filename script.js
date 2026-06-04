@@ -4,6 +4,7 @@ const questionText = document.getElementById("questionText");
 
 let clickCount = 0;
 let yesScale = 1;
+let fallingHeartInterval = null;
 
 const texts = [
   "Do you love me?",
@@ -21,21 +22,25 @@ window.onload = function () {
   noBtn.style.top = "0px";
 };
 
-function moveNoButton() {
+function moveNoButton(event) {
+  if (event) {
+    event.preventDefault();
+  }
+
   clickCount++;
 
   const padding = 20;
-  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+  const maxX = Math.max(window.innerWidth - noBtn.offsetWidth - padding, padding);
+  const maxY = Math.max(window.innerHeight - noBtn.offsetHeight - padding, padding);
 
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
+  const randomX = Math.floor(Math.random() * (maxX - padding)) + padding / 2;
+  const randomY = Math.floor(Math.random() * (maxY - padding)) + padding / 2;
 
   noBtn.style.position = "fixed";
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
 
-  yesScale += 0.25;
+  yesScale += 0.4;
 
   if (yesScale > 4) {
     yesScale = 4;
@@ -48,22 +53,19 @@ function moveNoButton() {
   }
 }
 
-
 function showResult() {
-
-  // Ubah background menjadi pink cerah
   document.body.style.background =
     "linear-gradient(135deg, #ff9acb, #ff5fa2)";
 
-  // Sembunyikan halaman pertanyaan
   document.getElementById("question").style.display = "none";
-
-  // Tampilkan halaman hasil
   document.getElementById("result").style.display = "block";
 
-  // Efek hati muncul
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 30; i++) {
     createPopHeart();
+  }
+
+  if (!fallingHeartInterval) {
+    fallingHeartInterval = setInterval(createHeart, 450);
   }
 }
 
@@ -95,8 +97,7 @@ function createPopHeart() {
   }, 1500);
 }
 
-setInterval(createHeart, 500);
-
 noBtn.addEventListener("mouseover", moveNoButton);
 noBtn.addEventListener("click", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton, { passive: false });
 yesBtn.addEventListener("click", showResult);
