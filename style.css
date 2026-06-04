@@ -10,6 +10,9 @@ body {
   font-family: Arial, sans-serif;
   overflow: hidden;
   text-align: center;
+
+  /* Animasi perubahan warna */
+  transition: background 0.8s ease;
 }
 
 .wrapper {

@@ -48,10 +48,20 @@ function moveNoButton() {
   }
 }
 
+
 function showResult() {
+
+  // Ubah background menjadi pink cerah
+  document.body.style.background =
+    "linear-gradient(135deg, #ff9acb, #ff5fa2)";
+
+  // Sembunyikan halaman pertanyaan
   document.getElementById("question").style.display = "none";
+
+  // Tampilkan halaman hasil
   document.getElementById("result").style.display = "block";
 
+  // Efek hati muncul
   for (let i = 0; i < 25; i++) {
     createPopHeart();
   }
