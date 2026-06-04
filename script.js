@@ -17,6 +17,17 @@ const texts = [
   "Choose Yes now ❤️"
 ];
 
+const noTexts = [
+  "Nope",
+  "Try again",
+  "Too slow",
+  "Missed me",
+  "Nah",
+  "Can't click me",
+  "Oops",
+  "Not today"
+];
+
 window.onload = function () {
   noBtn.style.left = "calc(50% + 10px)";
   noBtn.style.top = "0px";
@@ -43,6 +54,15 @@ function moveNoButton(event) {
   if (clickCount <= texts.length) {
     questionText.innerText = texts[clickCount - 1];
   }
+
+  noBtn.innerText = noTexts[clickCount % noTexts.length];
+
+  noBtn.classList.add("shake");
+  setTimeout(() => {
+    noBtn.classList.remove("shake");
+  }, 300);
+
+  createMiniHeartNearButton();
 
   enlargeYesButton();
 }
@@ -94,17 +114,21 @@ function enlargeYesButton() {
 
 function showResult() {
   document.body.style.background =
-    "linear-gradient(135deg, #ff9acb, #ff5fa2)";
+    "linear-gradient(135deg, #ff9acb, #ff5fa2, #ff2f8d)";
 
   document.getElementById("question").style.display = "none";
   document.getElementById("result").style.display = "block";
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 45; i++) {
     createPopHeart();
   }
 
+  for (let i = 0; i < 60; i++) {
+    setTimeout(createConfetti, i * 35);
+  }
+
   if (!fallingHeartInterval) {
-    fallingHeartInterval = setInterval(createHeart, 450);
+    fallingHeartInterval = setInterval(createHeart, 350);
   }
 }
 
@@ -113,7 +137,7 @@ function createHeart() {
   heart.classList.add("heart");
   heart.innerHTML = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 15 + 15 + "px";
+  heart.style.fontSize = Math.random() * 16 + 14 + "px";
 
   document.body.appendChild(heart);
 
@@ -133,7 +157,41 @@ function createPopHeart() {
 
   setTimeout(() => {
     heart.remove();
-  }, 1500);
+  }, 1600);
+}
+
+function createConfetti() {
+  const confetti = document.createElement("div");
+  confetti.classList.add("confetti");
+
+  const symbols = ["❤️", "💖", "💕", "💗", "✨", "🌸"];
+  confetti.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+  confetti.style.left = Math.random() * 100 + "vw";
+  confetti.style.fontSize = Math.random() * 18 + 14 + "px";
+
+  document.body.appendChild(confetti);
+
+  setTimeout(() => {
+    confetti.remove();
+  }, 3000);
+}
+
+function createMiniHeartNearButton() {
+  const heart = document.createElement("div");
+  heart.classList.add("pop-heart");
+  heart.innerHTML = "💗";
+
+  const rect = noBtn.getBoundingClientRect();
+  heart.style.left = rect.left + rect.width / 2 + "px";
+  heart.style.top = rect.top + "px";
+  heart.style.fontSize = "20px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 1200);
 }
 
 noBtn.addEventListener("mouseover", moveNoButton);
