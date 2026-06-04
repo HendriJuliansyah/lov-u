@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: #fff1f6;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+}
+
+h1 {
+  color: #ff4f93;
+  font-size: 36px;
+  font-weight: 700;
+  padding-top: 110px;
+  margin-bottom: 35px;
+}
+
+img {
+  width: 240px;
+  height: auto;
+  margin-bottom: 50px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.buttons {
+  position: relative;
+  height: 80px;
+}
+
+button {
+  border: none;
+  width: 92px;
+  height: 48px;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+#yesBtn {
+  background: #ff4f93;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+#noBtn {
+  background: #d1d1d1;
+  color: #222;
+  position: absolute;
+  font-weight: bold;
+}
+
+#result {
+  display: none;
+  padding-top: 110px;
+}
+
+#result h1 {
+  padding-top: 0;
+  margin-bottom: 40px;
+}
+
+/* Tampilan HP */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+    padding-top: 80px;
+    margin-bottom: 30px;
+  }
+
+  img {
+    width: 180px;
+    margin-bottom: 40px;
+  }
+
+  button {
+    width: 80px;
+    height: 42px;
+    font-size: 16px;
+  }
+
+  #yesBtn {
+    margin-right: 15px;
+  }
+
+  #result {
+    padding-top: 100px;
+  }
+}
