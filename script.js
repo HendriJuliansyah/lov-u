@@ -9,10 +9,11 @@ const texts = [
   "Do you love me?",
   "Are you sure?",
   "Really sure?",
-  "Please say yes",
-  "Don't do this to me",
-  "I'm gonna cry",
-  "Last chance"
+  "Please say yes 😢",
+  "Don't do this to me 💔",
+  "I'm gonna cry 😭",
+  "Last chance!",
+  "Just click Yes 😤"
 ];
 
 window.onload = function () {
@@ -24,7 +25,6 @@ function moveNoButton() {
   clickCount++;
 
   const padding = 20;
-
   const maxX = window.innerWidth - noBtn.offsetWidth - padding;
   const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
@@ -35,10 +35,10 @@ function moveNoButton() {
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
 
-  yesScale += 0.2;
+  yesScale += 0.25;
 
-  if (yesScale > 3) {
-    yesScale = 3;
+  if (yesScale > 4) {
+    yesScale = 4;
   }
 
   yesBtn.style.transform = `scale(${yesScale})`;
@@ -51,7 +51,41 @@ function moveNoButton() {
 function showResult() {
   document.getElementById("question").style.display = "none";
   document.getElementById("result").style.display = "block";
+
+  for (let i = 0; i < 25; i++) {
+    createPopHeart();
+  }
 }
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 15 + 15 + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 4000);
+}
+
+function createPopHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("pop-heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.top = Math.random() * 100 + "vh";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 1500);
+}
+
+setInterval(createHeart, 500);
 
 noBtn.addEventListener("mouseover", moveNoButton);
 noBtn.addEventListener("click", moveNoButton);
