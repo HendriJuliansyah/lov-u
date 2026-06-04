@@ -89,17 +89,28 @@ function enlargeYesButton() {
   yesBtn.style.borderRadius = "25px";
 
   if (clickCount >= 13) {
+
     noBtn.style.display = "none";
-    questionText.innerText = "Now click Yes ❤️";
+    questionText.innerText = "";
+
+    document.body.style.background = "#ff4f93";
+
+    yesBtn.classList.add("fullscreen");
 
     yesBtn.style.position = "fixed";
-    yesBtn.style.left = "50%";
-    yesBtn.style.top = "50%";
-    yesBtn.style.transform = "translate(-50%, -50%)";
-    yesBtn.style.width = screenWidth * 0.9 + "px";
-    yesBtn.style.height = screenHeight * 0.75 + "px";
-    yesBtn.style.borderRadius = "35px";
-    yesBtn.style.fontSize = screenWidth <= 768 ? "36px" : "55px";
+    yesBtn.style.top = "0";
+    yesBtn.style.left = "0";
+
+    yesBtn.style.width = "100vw";
+    yesBtn.style.height = "100vh";
+
+    yesBtn.style.borderRadius = "0";
+    yesBtn.style.margin = "0";
+    yesBtn.style.padding = "0";
+
+    yesBtn.style.fontSize =
+      window.innerWidth <= 768 ? "46px" : "76px";
+
     yesBtn.style.zIndex = "999";
     yesBtn.innerHTML = "YES ❤️";
   }
