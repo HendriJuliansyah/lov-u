@@ -3,7 +3,6 @@ const yesBtn = document.getElementById("yesBtn");
 const questionText = document.getElementById("questionText");
 
 let clickCount = 0;
-let yesScale = 1;
 let fallingHeartInterval = null;
 
 const texts = [
@@ -14,7 +13,9 @@ const texts = [
   "Don't do this to me 💔",
   "I'm gonna cry 😭",
   "Last chance!",
-  "Just click Yes 😤"
+  "Just click Yes 😤",
+  "You have no choice 😆",
+  "Choose Yes now ❤️"
 ];
 
 window.onload = function () {
@@ -40,16 +41,37 @@ function moveNoButton(event) {
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
 
-  yesScale += 0.4;
-
-  if (yesScale > 4) {
-    yesScale = 4;
-  }
-
-  yesBtn.style.transform = `scale(${yesScale})`;
-
   if (clickCount < texts.length) {
     questionText.innerText = texts[clickCount];
+  }
+
+  enlargeYesButton();
+}
+
+function enlargeYesButton() {
+  const newWidth = 95 + clickCount * 45;
+  const newHeight = 48 + clickCount * 22;
+  const newFontSize = 18 + clickCount * 3;
+
+  yesBtn.style.width = newWidth + "px";
+  yesBtn.style.height = newHeight + "px";
+  yesBtn.style.fontSize = newFontSize + "px";
+  yesBtn.style.borderRadius = "25px";
+
+  if (clickCount >= 10) {
+    noBtn.style.display = "none";
+
+    questionText.innerText = "Now click Yes ❤️";
+
+    yesBtn.style.position = "fixed";
+    yesBtn.style.top = "0";
+    yesBtn.style.left = "0";
+    yesBtn.style.width = "100vw";
+    yesBtn.style.height = "100vh";
+    yesBtn.style.borderRadius = "0";
+    yesBtn.style.fontSize = "55px";
+    yesBtn.style.zIndex = "999";
+    yesBtn.innerHTML = "YES ❤️";
   }
 }
 
