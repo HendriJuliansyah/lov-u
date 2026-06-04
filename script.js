@@ -6,7 +6,6 @@ let clickCount = 0;
 let fallingHeartInterval = null;
 
 const texts = [
-  "Do you love me?",
   "Are you sure?",
   "Really sure?",
   "Please say yes 😢",
@@ -30,7 +29,7 @@ function moveNoButton(event) {
 
   clickCount++;
 
-  const padding = 20;
+  const padding = 25;
   const maxX = Math.max(window.innerWidth - noBtn.offsetWidth - padding, padding);
   const maxY = Math.max(window.innerHeight - noBtn.offsetHeight - padding, padding);
 
@@ -41,37 +40,55 @@ function moveNoButton(event) {
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
 
-  if (clickCount < texts.length) {
-    questionText.innerText = texts[clickCount];
+  if (clickCount <= texts.length) {
+    questionText.innerText = texts[clickCount - 1];
   }
 
   enlargeYesButton();
 }
 
 function enlargeYesButton() {
-  const newWidth = 95 + clickCount * 45;
-  const newHeight = 48 + clickCount * 22;
-  const newFontSize = 18 + clickCount * 3;
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  let newWidth = 95 + clickCount * 28;
+  let newHeight = 48 + clickCount * 12;
+  let newFontSize = 18 + clickCount * 1.5;
+
+  if (screenWidth <= 768) {
+    newWidth = 80 + clickCount * 22;
+    newHeight = 42 + clickCount * 10;
+    newFontSize = 16 + clickCount * 1.2;
+  }
 
   yesBtn.style.width = newWidth + "px";
   yesBtn.style.height = newHeight + "px";
   yesBtn.style.fontSize = newFontSize + "px";
   yesBtn.style.borderRadius = "25px";
 
-  if (clickCount >= 10) {
+  if (clickCount >= 13) {
     noBtn.style.display = "none";
-
     questionText.innerText = "Now click Yes ❤️";
 
     yesBtn.style.position = "fixed";
-    yesBtn.style.top = "0";
+    yesBtn.style.left = "50%";
+    yesBtn.style.top = "50%";
+    yesBtn.style.transform = "translate(-50%, -50%)";
+    yesBtn.style.width = screenWidth * 0.9 + "px";
+    yesBtn.style.height = screenHeight * 0.75 + "px";
+    yesBtn.style.borderRadius = "35px";
+    yesBtn.style.fontSize = screenWidth <= 768 ? "36px" : "55px";
+    yesBtn.style.zIndex = "999";
+    yesBtn.innerHTML = "YES ❤️";
+  }
+
+  if (clickCount >= 16) {
     yesBtn.style.left = "0";
+    yesBtn.style.top = "0";
+    yesBtn.style.transform = "none";
     yesBtn.style.width = "100vw";
     yesBtn.style.height = "100vh";
     yesBtn.style.borderRadius = "0";
-    yesBtn.style.fontSize = "55px";
-    yesBtn.style.zIndex = "999";
-    yesBtn.innerHTML = "YES ❤️";
   }
 }
 
